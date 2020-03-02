@@ -1,0 +1,18 @@
+version: '3.7'
+# https://linoxide.com/containers/setup-lemp-stack-docker/
+services:
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "8080:80"
+    volumes:
+     - ./nginx-server/logs:/var/log/nginx
+     - ./nginx-server/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
+     - ./public_html/:/usr/share/nginx/html
+
+  phpfpm:
+    image: php:fpm
+    ports:
+     - "9000:9000"
+    volumes:
+     - ./public_html:/usr/share/nginx/html
