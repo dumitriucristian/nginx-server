@@ -9,6 +9,8 @@ services:
      - ./nginx-server/logs:/var/log/nginx
      - ./nginx-server/conf.d/nginx.conf:/etc/nginx/conf.d/nginx.conf
      - ./public_html/:/usr/share/nginx/html
+    links:
+     - phpfpm
 
   phpfpm:
     image: php:fpm
@@ -16,3 +18,4 @@ services:
      - "9000:9000"
     volumes:
      - ./public_html:/usr/share/nginx/html
+
