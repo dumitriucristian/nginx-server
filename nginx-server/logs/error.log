@@ -51,3 +51,17 @@
 2020/03/04 04:48:55 [emerg] 19#19: open() "/etc/nginx/conf.d/nginx.conf" failed (2: No such file or directory) in /etc/nginx/nginx.conf:31
 2020/03/04 04:55:22 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.25.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
 2020/03/04 05:01:22 [emerg] 1#1: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/nginx.conf:20
+2020/03/06 00:33:54 [emerg] 1#1: "fastcgi_pass" directive is duplicate in /etc/nginx/conf.d/default.conf:14
+2020/03/06 00:34:17 [emerg] 1#1: "fastcgi_pass" directive is duplicate in /etc/nginx/conf.d/default.conf:14
+2020/03/06 00:52:38 [emerg] 26#26: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
+2020/03/06 00:52:38 [emerg] 26#26: still could not bind()
+2020/03/06 01:26:34 [emerg] 1#1: open() "/etc/nginx/fastcgi.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:19
