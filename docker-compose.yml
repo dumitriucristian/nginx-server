@@ -2,9 +2,13 @@ version: '3'
 # https://linoxide.com/containers/setup-lemp-stack-docker/
 # http://www.inanzzz.com/index.php/post/zpbw/creating-a-simple-php-fpm-nginx-and-mysql-application-with-docker-compose
 #https://www.pascallandau.com/blog/php-php-fpm-and-nginx-on-docker-in-windows-10/
+#http://www.inanzzz.com/index.php/post/0e95/copying-symfony-application-into-docker-container-with-multi-stage-builds
+
 services:
   nginx:
-    build: ./docker/nginx
+    build:
+     context: .
+     dockerfile: docker/nginx/Dockerfile
     ports:
       - "8080:80"
     volumes:
@@ -15,10 +19,27 @@ services:
      - phpfpm
 
   phpfpm:
-    image: php:fpm
+    build:
+       context: .
+       dockerfile: docker/phpfpm/Dockerfile
     ports:
      - "9000:9000"
     volumes:
      - ./www:/srv/www
      - ./docker/phpfpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  mysql:
+    image: mysql:5.7
+    ports:
+        - 3306:3306
+    depends_on:
+        - phpfpm
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 

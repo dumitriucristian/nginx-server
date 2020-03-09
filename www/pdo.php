@@ -1,6 +1,6 @@
 <?php
 $user = "root";
-$pass="";
-$dbh = new PDO('mysql:host=mysqldb;dbname=test', $user, $pass);
+$pass="root";
+$dbh = new PDO('mysql:host=mysql;dbname=dummy', $user, $pass);
 
 var_dump($dbh);
