@@ -1,0 +1,3 @@
+[submodule "online-catalog"]
+	path = app
+	url = https://github.com/dumitriucristian/online-catalog.git
