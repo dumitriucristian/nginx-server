@@ -4,7 +4,7 @@ version: '3'
 #https://www.pascallandau.com/blog/php-php-fpm-and-nginx-on-docker-in-windows-10/
 #http://www.inanzzz.com/index.php/post/0e95/copying-symfony-application-into-docker-container-with-multi-stage-builds
 #https://learn2torials.com/a/dockerize-reactjs-app
-
+#https://knplabs.com/en/blog/how-to-dockerise-a-symfony-4-project
 services:
   nginx:
     build:
@@ -14,7 +14,7 @@ services:
       - "8080:80"
     volumes:
      - ./nginx-server/logs:/var/log/nginx
-     - ./nginx-server/nginx.conf:/etc/nginx/conf.d/default.conf
+     - ./nginx-server/default.conf:/etc/nginx/conf.d/default.conf
      - ./www/:/srv/www
     depends_on:
      - phpfpm
@@ -55,3 +55,4 @@ services:
       - 3000:3000
     volumes:
       - ./app:/app
+
