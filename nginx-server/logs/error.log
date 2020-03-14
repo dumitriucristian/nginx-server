@@ -65,3 +65,4 @@
 2020/03/06 00:52:38 [emerg] 26#26: bind() to [::]:80 failed (98: Address already in use)
 2020/03/06 00:52:38 [emerg] 26#26: still could not bind()
 2020/03/06 01:26:34 [emerg] 1#1: open() "/etc/nginx/fastcgi.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:19
+2020/03/14 05:39:29 [emerg] 31#31: open() "/etc/nginx/conf.d/default.conf" failed (2: No such file or directory) in /etc/nginx/nginx.conf:31

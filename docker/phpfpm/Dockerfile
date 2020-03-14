@@ -1,4 +1,4 @@
-FROM php:7.2.13-fpm-alpine3.8
+FROM php:7.4.0-fpm-alpine
 
 RUN apk update \
  && apk add --no-cache $PHPIZE_DEPS \
@@ -13,7 +13,6 @@ RUN apk update \
  && rm -rf \
     /var/cache/apk/* \
     /var/lib/apt/lists/*
-
 
 COPY ./docker/phpfpm/php.ini /usr/local/etc/php/conf.d/php.override.ini
 COPY ./nginx-server/nginx.conf /usr/local/etc/php-fpm.d/www.conf
