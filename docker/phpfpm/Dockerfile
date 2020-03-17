@@ -15,4 +15,4 @@ RUN apk update \
     /var/lib/apt/lists/*
 
 COPY ./docker/phpfpm/php.ini /usr/local/etc/php/conf.d/php.override.ini
-COPY ./nginx-server/nginx.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./nginx-server/default.conf /usr/local/etc/php-fpm.d/default.conf

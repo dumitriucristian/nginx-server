@@ -27,7 +27,7 @@ services:
      - "9000:9000"
     volumes:
      - ./www:/srv/www
-     - ./docker/phpfpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+     - ./docker/phpfpm/default.conf:/usr/local/etc/php-fpm.d/default.conf
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
