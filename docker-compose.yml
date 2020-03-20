@@ -29,8 +29,8 @@ services:
      - ./www:/srv/www
      - ./docker/phpfpm/default.conf:/usr/local/etc/php-fpm.d/default.conf
     environment:
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: "dummy"
+      MYSQL_PASSWORD: "dummy"
 
   mysql:
     image: mysql:5.7
@@ -39,10 +39,10 @@ services:
     depends_on:
         - phpfpm
     environment:
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: "dummy"
+        MYSQL_DATABASE: "dummy"
+        MYSQL_USER: "dummy"
+        MYSQL_PASSWORD: "dummy"
 
   app:
     build:

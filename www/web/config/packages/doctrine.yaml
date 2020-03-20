@@ -6,7 +6,10 @@ doctrine:
         # either here or in the DATABASE_URL env var (see .env file)
         server_version: '5.7'
         driver: 'pdo_mysql'
-        host: '127.0.0.1'
+        host: 'localhost'
+        user: 'default'
+        password: 'dummy'
+        port: '3306'
 
 
     orm:

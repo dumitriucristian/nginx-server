@@ -7,7 +7,7 @@ WORKDIR /usr/src
 RUN mkdir -p web
 COPY ./www/web /usr/src/web
 
-RUN PATH=$PATH:/web/vendor/bin:bin
+#wwRUN PATH=$PATH:/web/vendor/bin:bin
 
 
 EXPOSE 9000
