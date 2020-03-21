@@ -5,6 +5,7 @@ version: '3'
 #http://www.inanzzz.com/index.php/post/0e95/copying-symfony-application-into-docker-container-with-multi-stage-builds
 #https://learn2torials.com/a/dockerize-reactjs-app
 #https://knplabs.com/en/blog/how-to-dockerise-a-symfony-4-project
+#https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee
 services:
   nginx:
     build:
@@ -43,6 +44,8 @@ services:
         MYSQL_DATABASE: "dummy"
         MYSQL_USER: "dummy"
         MYSQL_PASSWORD: "dummy"
+    volumes:
+      - my-db:/var/lib/mysql
 
   app:
     build:
@@ -55,3 +58,6 @@ services:
       - 3000:3000
     volumes:
       - ./app:/app
+
+volumes:
+  my-db:

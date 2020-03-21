@@ -7,25 +7,12 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Profiler\Profiler;
 
 class DefaultController extends AbstractController
 {
     public function index()
     {
-        $dummyData = [
-            [
-                'id' => 678,
-                'title' => 'asdfasf',
-            ],
-            [
-                'id' => 890,
-                'title' => '1asdfasd3',
-            ],
-            [
-                'id' => 126,
-                'title' => 'sfaasfdasfda',
-            ]
-        ];
         $repository = $this->getDoctrine()->getRepository(ClassRoom::class);
         $classes = $repository->findAll();
         $encoders = [new JsonEncoder()];
@@ -39,8 +26,16 @@ class DefaultController extends AbstractController
          $response->setContent($jsonContent);
          $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin','http://localhost:3000');
+        $response->headers->set('Symfony-Debug-Toolbar-Replace', 1);
 
         return $response;
+    }
+
+    public function debug()
+    {
+        return new Response(
+            '<html><body>Lucky number:15</body></html>'
+        );
     }
 
 }

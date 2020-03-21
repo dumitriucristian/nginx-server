@@ -2,3 +2,8 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
     methods:    GET
+
+debug:
+    path: /debug
+    controller: App\Controller\DefaultController::debug
+    methods:    GET
