@@ -3,6 +3,11 @@ index:
     controller: App\Controller\DefaultController::index
     methods:    GET
 
+login:
+    path:       /login
+    controller: App\Controller\SecurityController::login
+    methods: POST
+
 debug:
     path: /debug
     controller: App\Controller\DefaultController::debug

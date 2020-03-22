@@ -9,11 +9,13 @@
         "symfony/flex": "^1.6",
         "symfony/framework-bundle": "5.0.*",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "5.0.*",
         "symfony/serializer": "5.0.*",
         "symfony/serializer-pack": "^1.0",
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "easycorp/easy-log-handler": "^1.0.7",
         "symfony/console": "5.0.*",
         "symfony/debug-bundle": "*",

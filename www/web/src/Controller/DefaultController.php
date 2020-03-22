@@ -8,11 +8,21 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
+use Symfony\Component\Security\Core\Security;
 
 class DefaultController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+     {
+
+         $this->security = $security;
+    }
+
     public function index()
     {
+        //dd("sss");
         $repository = $this->getDoctrine()->getRepository(ClassRoom::class);
         $classes = $repository->findAll();
         $encoders = [new JsonEncoder()];
