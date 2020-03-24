@@ -11,11 +11,11 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
-        #secured_area:
-        #    methods: [GET, POST]
-        #   guard:
-        #        authenticators:
-        #           - App\Security\TokenAuthenticator
+        secured_area:
+           methods: [GET, POST]
+           guard:
+             authenticators:
+               - App\Security\TokenAuthenticator
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             anonymous: lazy
@@ -33,11 +33,16 @@ security:
         main:
             anonymous: lazy
             # provider: app_user_provider
-            logout: ~
+            logout:
+                path: app_logout
             security: true
             guard:
                 authenticators:
                     - App\Security\AppAuthenticator
+                    -  App\Security\TokenAuthenticator
+                entry_point: App\Security\AppAuthenticator
+            json_login:
+                check_path: /app_login
 
 
             # activate different ways to authenticate
