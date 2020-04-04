@@ -11,17 +11,30 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegisterController extends AbstractController
 {
-    public function construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, UserPasswordEncoderInterface $encoder)
     {
         $this->userRepository = $userRepository;
+        $this->encoder = $encoder;
 
     }
 
-    public function register(UserPasswordEncoderInterface $encoder)
+    public function register(Request $request)
     {
-        $username ="test@test.com";
+        $data = json_decode($request->getContent(),true);
+        $email = $data["username"];
+        dd($email);
+
+        $user = $this->userRepository->findOneBy([
+           'email' => $email,
+        ]);
+
+
+        if(!is_null($user)){
+            return "user exist";
+        }
+
         $user = new User();
-        $password = $encoder->encodePassword($user,'test');
+        $password = $this->encoder->encodePassword($user,'test');
         $user->setPassword($password);
         $user->setEmail("test@test.com");
 
