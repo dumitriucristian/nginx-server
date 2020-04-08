@@ -28,7 +28,6 @@ class RegisterController extends AbstractController
            'email' => $email,
         ]);
 
-
         if(!is_null($user)){
             return "user exist";
         }
