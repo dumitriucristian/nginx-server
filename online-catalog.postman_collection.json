@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "f8821b7b-22ef-43eb-b116-cd5b0ac1af74",
+		"name": "online-catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "zzz",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "username",
+						"value": "admin",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "0000000",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"ioana@ioana.com\", \n\t\"password\":\"test\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				},
+				"description": "Register user with jwt auth\nhttp://localhost:8080/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Test authorization",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1ODYzNjE4MDAsImV4cCI6MTU4NjM2NTQwMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdEB0ZXN0LmNvbSJ9.j4SSD1kt3si5RCSOPi4FjtM1AzDOSTqzzf_jpsy7sw2uwXruuStmKxKtJFAf_VW168qyo2vZaVmQ8TO2HA13gNqLn67NgTW4G8wb-1f98rDUS_JGDAQjJrlZueS15rk7wyW0EjBxPOcF3GCeD6SpN0kRUog2sMqnk_8k4-r7EufVS8sDIldLwj0PLHrb_2EJs0562sK3PCHBJSPu3YlS3m75nINCGeLxwdHG_0YMxTIQzL3qTtxxNBC9Ni-XYmQjdPKPH_3c9CmWShOWwWDHRuMHKRa3OMb30XrzXIBwDrYtqHQL98p8Kc1TgvGjiLHr6ZvzRMT1Y4g_jx4Sk-RulbB1Bg-Zj1cDcfc1WfAVpHzpHqkQTr4BgEOHZFtzFWL8PzihpAq3rv9b6GQd22taMbba8XUWlghPytkPaia-S6-jhWX99_k7jikMbokBuOOs2ayAR2IV4rDx7asiByCwlLZ4v7eDXCI6BKCNiu5RaTxCrTF535MoqZqPtLfymAYNV60bxwQaCw_w2ZtpCC7hWyKzde30Dwta63oY5TiyyP-_msHafhlW4Q2ZnyQAfVoBRRqr9Fb2S7X3EARxYOQM3JuXgafi6sCUd-hcWmRtvARE_YRbFn-QaI0cuj72YujRW5YKXwayPauD6M-utKDSi5HcQq-5DrDRQkCb3ONm1Lo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"test"
+					]
+				},
+				"description": "http://localhost:8080/api/test"
+			},
+			"response": []
+		},
+		{
+			"name": "login chekc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "zzz",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "username",
+						"value": "admin",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "0000000",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"test@test.com\", \n\t\"password\":\"test\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login_check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login_check"
+					]
+				},
+				"description": "Test token validity  and authentication http://localhost:8080/api/login_check"
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "0d6a5872ea3991743d668e878bdf8ae4eb645b4622c877b0423980a38bc7bf1d143a2864b596a980a45d002d3c45ebd40a003f933a6cba40accc423bfa104d30",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "9c0b8cdb433588c8f4f2b49dbbb5d19654f42b31d9ca790850c85443d06c5fa75fc261a5dca2eabb9011081ad46aa53578172c7b237fb5e7c3956d65bfad0a21",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/token/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"token",
+						"refresh"
+					]
+				},
+				"description": "Refresh token after the token expirehttp://localhost:8080/api/token/refresh"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
