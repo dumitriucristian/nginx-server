@@ -11,10 +11,19 @@ File : online-catalog.postman_collection.json
 
 ### how it works
 
-####Backend
+#### Backend
 All the routes with /api are jwt protected and require token
 
-####Frontend
+##### Login user - generate token
+POST http://localhost:8080/api/login_check
 
-####Versioning
+Body raw
+{
+	"username":"test@test.com", 
+	"password":"test"
+}
+
+#### Frontend
+
+#### Versioning
  Versioned with git submodules
