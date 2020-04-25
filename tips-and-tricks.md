@@ -1,12 +1,22 @@
-## Resources
+
+###React
 From class components to functional components  
 https://www.digitalocean.com/community/tutorials/five-ways-to-convert-react-class-components-to-functional-components-with-react-hooks  
 https://medium.com/@olinations/10-steps-to-convert-a-react-class-component-to-a-functional-component-with-hooks-ab198e0fa139
 
-React share data between components     
+React share data between components useEffect & useState    
 https://dev.to/basal/react-hooks-making-it-easier-to-compose-reuse-and-share-react-code-5he9    
 https://egghead.io/lessons/react-share-logic-across-multiple-react-components-with-custom-hooks
+
+userReducer with createContext to create a global state object  
 https://blog.logrocket.com/use-hooks-and-context-not-react-and-redux/
-## CLI
+
+userHistory to redirect     
+https://reacttraining.com/react-router/web/api/Hooks/usehistory
+
+conditional rendering
+https://www.robinwieruch.de/conditional-rendering-react
+
+###GIT
  Update submodule :```git submodule update --recursive```   
  Delete local branch :```git branch -d <branch name>```
