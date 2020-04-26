@@ -14,9 +14,14 @@ https://blog.logrocket.com/use-hooks-and-context-not-react-and-redux/
 userHistory to redirect     
 https://reacttraining.com/react-router/web/api/Hooks/usehistory
 
-conditional rendering
+conditional rendering   
 https://www.robinwieruch.de/conditional-rendering-react
 
+React cheatsheet               
+https://dev.to/codeartistryio/the-react-cheatsheet-for-2020-real-world-examples-4hgg
+
+JS concept for react    
+https://codeartistry.io/10-javascript-concepts-you-need-to-master-react/
 ###GIT
  Update submodule :```git submodule update --recursive```   
  Delete local branch :```git branch -d <branch name>```
