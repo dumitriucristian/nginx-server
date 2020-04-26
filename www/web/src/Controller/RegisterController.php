@@ -8,6 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RegisterController extends AbstractController
 {
@@ -20,6 +22,7 @@ class RegisterController extends AbstractController
 
     public function register(Request $request)
     {
+
         $data = json_decode($request->getContent(),true);
         $email = $data["username"];
 
@@ -32,16 +35,28 @@ class RegisterController extends AbstractController
         }
 
         $user = new User();
-        $password = $this->encoder->encodePassword($user,'test');
+        $password = $this->encoder->encodePassword($user,$data['password']);
         $user->setPassword($password);
-        $user->setEmail("test@test.com");
+        $user->setEmail($data['username']);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        dd($user);
+
+        $response = new JsonResponse();
+        $response->setData([
+            'status'=>  'ok',
+            'data' => [
+                'user' => [
+                    'email' => $user->getEmail(),
+                    'roles' => $user->getRoles()
+
+                ]
+            ]
+        ]);
 
 
+        return $response;
 
     }
 }
