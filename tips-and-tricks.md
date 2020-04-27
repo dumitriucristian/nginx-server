@@ -22,6 +22,9 @@ https://dev.to/codeartistryio/the-react-cheatsheet-for-2020-real-world-examples-
 
 JS concept for react    
 https://codeartistry.io/10-javascript-concepts-you-need-to-master-react/
+
+React how to loop   
+https://flaviocopes.com/react-how-to-loop/
 ###GIT
  Update submodule :```git submodule update --recursive```   
  Delete local branch :```git branch -d <branch name>```
