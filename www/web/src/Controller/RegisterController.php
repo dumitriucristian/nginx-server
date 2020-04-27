@@ -38,6 +38,7 @@ class RegisterController extends AbstractController
         $password = $this->encoder->encodePassword($user,$data['password']);
         $user->setPassword($password);
         $user->setEmail($data['username']);
+        $user->setRole('ROLE_'.$data['role']);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
@@ -50,7 +51,6 @@ class RegisterController extends AbstractController
                 'user' => [
                     'email' => $user->getEmail(),
                     'roles' => $user->getRoles()
-
                 ]
             ]
         ]);

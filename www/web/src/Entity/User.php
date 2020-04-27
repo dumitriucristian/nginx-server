@@ -50,6 +50,13 @@ class User implements UserInterface
         return $this;
     }
 
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
