@@ -17,3 +17,8 @@ register:
 api_login_check:
     path: /api/login_check
 
+
+addSchool:
+    path: /api/addSchool
+    controller: App\Controller\SchoolController::addSchool
+
