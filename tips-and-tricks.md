@@ -25,6 +25,13 @@ https://codeartistry.io/10-javascript-concepts-you-need-to-master-react/
 
 React how to loop   
 https://flaviocopes.com/react-how-to-loop/
+
 ###GIT
  Update submodule :```git submodule update --recursive```   
  Delete local branch :```git branch -d <branch name>```
+ 
+###CLI
+```
+doctrine:migrations:execute <version number>
+doctrine:migrations:status
+```
