@@ -5,7 +5,6 @@ namespace App\Controller;
 
 
 use App\Entity\School;
-use App\Repository\SchoolRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -34,5 +33,7 @@ class SchoolController extends AbstractController
 
         return $response;
     }
+
+
 
 }

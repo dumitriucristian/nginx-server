@@ -26,6 +26,9 @@ https://codeartistry.io/10-javascript-concepts-you-need-to-master-react/
 React how to loop   
 https://flaviocopes.com/react-how-to-loop/
 
+React links     
+http://www.hackingwithreact.com/read/1/23/creating-a-link-between-pages-in-react-router
+
 ###GIT
  Update submodule :```git submodule update --recursive```   
  Delete local branch :```git branch -d <branch name>```
