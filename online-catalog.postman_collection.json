@@ -180,6 +180,76 @@
 				"description": "Refresh token after the token expirehttp://localhost:8080/api/token/refresh"
 			},
 			"response": []
+		},
+		{
+			"name": "Post addSchool",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/addSchool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addSchool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add class to school",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1ODgxNTE1MjIsImV4cCI6MTU4ODE1NTEyMiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdEB0ZXN0LmNvbSJ9.Ch0AG_P6s1JQhMrgqua-d3Q9Ry0_S-nvLOoxPL9c19B7XZQE1IXIzY2nujxkdQXE_43bS73HlcamBYErnaF09itfUQk7ZKaJbIYWkg9UebBFBxeIlrPxPjYbg34AOubaYQCbdvzsq9YmzXCjj_RILsO9l6QQY9Qq1vuSBmks2FI2pPAOaXOefJtKgmF1zbq7gBh9Ed9wLdT1tJNgIvL4wkW0yGDN_Ww4RvLrNgdiygcNH1AOGiCns2zAaifUkvOODC0c0NBE6nefgGyLNkMvOUXQO1OceRjSKmj4gaEE0t6WWdfhd4IlxulanqnHs5kZYR1_iusdtLe9NcyJ-VnX4S0L8LBtByUL1PoxMLk6pAlLoMzmz6TTgRegoIgRKQKiDhJy_TjK2J6J7AAGoSC83epLQo2v4ewKgMVLwHrJIL-wPT1tQLEGbVpjnQrR0ZLpzYgevsOMr1tebH6-bq2FaMTZcRB48tEvJQilag2cxHVFxUhzEgAGlF04IyNrvT4jWvsJuWu0BWym5LGJWhftLMLD1HjrZQlcFPW4FBr2Cfvm0Fw6rniAj1R9Mx7WG17o6ne9s01E4fZTpLZqKQ0usbQTvUPl-qrXPuiePEQMoaSfcrqvo13UaFtfwjJW01_9XqWmF-NEnbJDRWaHixOajp3aBWVGzS33bgxOjvRfsXc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"school_id\":2,\n  \"level\":\"2\",\n  \"index\":\"B\",\n  \"name\":\"1B\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/addClass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addClass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add course to class",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
