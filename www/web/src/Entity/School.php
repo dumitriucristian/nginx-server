@@ -34,13 +34,15 @@ class School
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Classes", mappedBy="school")
+     * @ORM\OneToMany(targetEntity="App\Entity\SchoolClass", mappedBy="school")
      */
-    private $classes;
+    private $schoolClasses;
 
     public function __construct()
     {
         $this->classes = new ArrayCollection();
+        $this->class_id = new ArrayCollection();
+        $this->schoolClasses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,33 +87,37 @@ class School
     }
 
     /**
-     * @return Collection|Classes[]
+     * @return Collection|SchoolClass[]
      */
-    public function getClasses(): Collection
+    public function getSchoolClasses(): Collection
     {
-        return $this->classes;
+        return $this->schoolClasses;
     }
 
-    public function addClass(Classes $class): self
+    public function addSchoolClass(SchoolClass $schoolClass): self
     {
-        if (!$this->classes->contains($class)) {
-            $this->classes[] = $class;
-            $class->setSchool($this);
+        if (!$this->schoolClasses->contains($schoolClass)) {
+            $this->schoolClasses[] = $schoolClass;
+            $schoolClass->setSchool($this);
         }
 
         return $this;
     }
 
-    public function removeClass(Classes $class): self
+    public function removeSchoolClass(SchoolClass $schoolClass): self
     {
-        if ($this->classes->contains($class)) {
-            $this->classes->removeElement($class);
+        if ($this->schoolClasses->contains($schoolClass)) {
+            $this->schoolClasses->removeElement($schoolClass);
             // set the owning side to null (unless already changed)
-            if ($class->getSchool() === $this) {
-                $class->setSchool(null);
+            if ($schoolClass->getSchool() === $this) {
+                $schoolClass->setSchool(null);
             }
         }
 
         return $this;
     }
+
+
+
+
 }

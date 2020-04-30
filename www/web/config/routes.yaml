@@ -22,3 +22,10 @@ addSchool:
     path: /api/addSchool
     controller: App\Controller\SchoolController::addSchool
 
+addClass:
+    path: /api/addClass
+    controller: App\Controller\ClassController::addClass
+
+addCourse:
+    path: /api/addCourse
+    controller: App\Controller\CourseController::addCourse

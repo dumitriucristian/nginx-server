@@ -26,6 +26,11 @@ class Courses
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SchoolClass", inversedBy="courses")
+     */
+    private $SchoolClass;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Courses
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSchoolClass(): ?SchoolClass
+    {
+        return $this->SchoolClass;
+    }
+
+    public function setSchoolClass(?SchoolClass $SchoolClass): self
+    {
+        $this->SchoolClass = $SchoolClass;
 
         return $this;
     }

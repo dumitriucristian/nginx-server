@@ -22,7 +22,6 @@ class RegisterController extends AbstractController
 
         $data = json_decode($request->getContent(),true);
         $email = $data["username"];
-
         $user = $this->userRepository->findOneBy([
            'email' => $email,
         ]);
