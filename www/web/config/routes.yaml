@@ -18,22 +18,42 @@ api_login_check:
     path: /api/login_check
 
 
+#schools
 addSchool:
     path: /api/addSchool
     controller: App\Controller\SchoolController::addSchool
 
+getSchools:
+    path: /api/Schools
+    controller: App\Controller\SchoolController::getSchools
+
+school:
+    path: /api/School/{id}
+    controller: App\Controller\SchoolController::schoolDetails
+
+
+#classes
 addClass:
     path: /api/addClass
     controller: App\Controller\ClassController::addClass
 
+
+#course
 addCourse:
     path: /api/addCourse
     controller: App\Controller\CourseController::addCourse
 
+
+#teacher
 assignTeacher:
     path: /api/assignTeacher
     controller: App\Controller\CourseController::addTeacher
 
+
+#grades
 addGrade:
     path: /api/addGrade
     controller: App\Controller\GradeController::addGrade
+
+#students
+
