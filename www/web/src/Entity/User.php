@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -38,6 +40,22 @@ class User implements UserInterface
      */
     private $fullname;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student")
+     */
+    private $teacher;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student", orphanRemoval=true)
+     */
+    private $grades;
+
+    public function __construct()
+    {
+        $this->teacher = new ArrayCollection();
+        $this->grades = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,7 +87,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -96,7 +114,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -131,6 +149,37 @@ class User implements UserInterface
     public function setFullname(?string $fullname): self
     {
         $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Grade[]
+     */
+    public function getGrades(): Collection
+    {
+        return $this->grades;
+    }
+
+    public function addGrade(Grade $grade): self
+    {
+        if (!$this->grades->contains($grade)) {
+            $this->grades[] = $grade;
+            $grade->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGrade(Grade $grade): self
+    {
+        if ($this->grades->contains($grade)) {
+            $this->grades->removeElement($grade);
+            // set the owning side to null (unless already changed)
+            if ($grade->getStudent() === $this) {
+                $grade->setStudent(null);
+            }
+        }
 
         return $this;
     }

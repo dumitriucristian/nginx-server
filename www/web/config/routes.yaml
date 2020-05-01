@@ -33,3 +33,7 @@ addCourse:
 assignTeacher:
     path: /api/assignTeacher
     controller: App\Controller\CourseController::addTeacher
+
+addGrade:
+    path: /api/addGrade
+    controller: App\Controller\GradeController::addGrade
