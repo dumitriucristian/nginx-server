@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\User;
 use App\Entity\Courses;
 use App\Entity\SchoolClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,6 +30,26 @@ class CourseController extends AbstractController
         $response = new JsonResponse();
         $response->setData(
             ['status'=>'ok']
+        );
+
+        return $response;
+    }
+
+    public function addTeacher(Request $request)
+    {
+
+        $data = json_decode($request->getContent(),true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $course = $entityManager->getRepository(Courses::class)->find($data['course_id']);
+        $user = $entityManager->getRepository(User::class)->find($data['teacher_id']);
+        $course->setTeacher($user);
+        $entityManager->persist($course);
+        $entityManager->flush();
+
+        $response =  new JsonResponse();
+        $response->setData(
+            ['status'=> 'ok']
         );
 
         return $response;

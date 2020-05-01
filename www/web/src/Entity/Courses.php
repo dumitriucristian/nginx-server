@@ -31,6 +31,12 @@ class Courses
      */
     private $SchoolClass;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $teacher;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,4 +77,17 @@ class Courses
 
         return $this;
     }
+
+    public function getTeacher(): ?User
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(?User $teacher): self
+    {
+        $this->teacher = $teacher;
+
+        return $this;
+    }
+
 }

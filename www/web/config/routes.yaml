@@ -29,3 +29,7 @@ addClass:
 addCourse:
     path: /api/addCourse
     controller: App\Controller\CourseController::addCourse
+
+assignTeacher:
+    path: /api/assignTeacher
+    controller: App\Controller\CourseController::addTeacher

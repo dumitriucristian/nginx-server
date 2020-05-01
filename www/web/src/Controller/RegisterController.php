@@ -35,6 +35,7 @@ class RegisterController extends AbstractController
         $user->setPassword($password);
         $user->setEmail($data['username']);
         $user->setRole('ROLE_'.$data['role']);
+        $user->setFullname($data['fullname']);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);

@@ -36,9 +36,11 @@ http://www.hackingwithreact.com/read/1/23/creating-a-link-between-pages-in-react
 ###CLI
 ```
 //execute specific migration file   
-doctrine:migrations:execute <version number>    
+doctrine:migrations:execute <version number>  
+  
 //check migration status    
 doctrine:migrations:status  
+
 //downgrade or upgrade
 doctrine:migrations:migrate <version number>    
 ```
