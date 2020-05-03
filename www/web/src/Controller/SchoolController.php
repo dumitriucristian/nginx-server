@@ -57,7 +57,7 @@ class SchoolController extends AbstractController
         $response = new JsonResponse();
         $response->setData([
             'status'=>'ok',
-            'data'=>$school
+            'data'=>json_encode($school)
         ]);
 
         return $response;

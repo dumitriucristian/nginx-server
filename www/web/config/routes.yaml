@@ -39,6 +39,14 @@ addClass:
     path: /api/addClass
     controller: App\Controller\ClassController::addClass
 
+getClass:
+    path: /api/classes
+    controller: App\Controller\ClassController::getClasses
+
+class:
+    path: /api/school/id
+    controller: App\Controllrer\ClassController::classDetails
+
 
 #course
 addCourse:
