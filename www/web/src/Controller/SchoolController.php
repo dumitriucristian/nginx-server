@@ -48,6 +48,22 @@ class SchoolController extends AbstractController
         return $response;
     }
 
+    public function schoolDetails(Request $request)
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $school = $entityManager->getRepository(School::class)->getSchoolDetails($request->get('id'));
+
+        $response = new JsonResponse();
+        $response->setData([
+            'status'=>'ok',
+            'data'=>$school
+        ]);
+
+        return $response;
+    }
+
+
 
 
 }

@@ -32,6 +32,8 @@ school:
     controller: App\Controller\SchoolController::schoolDetails
 
 
+
+
 #classes
 addClass:
     path: /api/addClass

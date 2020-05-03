@@ -34,6 +34,22 @@ class SchoolRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function getSchoolDetails($id)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "SELECT 
+            u.id, 
+            u.address, 
+            u.name, 
+            u.description 
+            FROM App\Entity\School u
+            WHERE u.id = $id");
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return School[] Returns an array of School objects
     //  */
