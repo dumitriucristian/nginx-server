@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SchoolClassRepository")
@@ -20,15 +21,18 @@ class SchoolClass
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"classdata"})
      */
     private $name;
 
     /**
+     * @Groups({"classdata"})
      * @ORM\Column(type="integer")
      */
     private $level;
 
     /**
+     * @Groups({"classdata"})
      * @ORM\Column(type="string", length=255)
      */
     private $class_index;

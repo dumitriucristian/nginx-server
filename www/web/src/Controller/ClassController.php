@@ -13,6 +13,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 class ClassController extends AbstractController
 {
@@ -52,6 +54,8 @@ class ClassController extends AbstractController
         //avoid circular refference error
         $encoder = new JsonEncoder();
         $defaultContext = [
+          //  AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
+
             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
                 return $object->getName();
             },
@@ -70,7 +74,11 @@ class ClassController extends AbstractController
         $serializer = new Serializer([$normalizer], [$encoder]);
 
         //serialize
-        $rsp = $serializer->serialize($classes, 'json',[AbstractNormalizer::IGNORED_ATTRIBUTES => ['password']]);
+        $rsp = $serializer->serialize($classes, 'json',[
+
+            AbstractNormalizer::IGNORED_ATTRIBUTES => ['password'],
+
+        ]);
 
         //add response
         $response = new Response(
