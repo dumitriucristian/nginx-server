@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class School
 {
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -34,6 +35,7 @@ class School
     private $description;
 
     /**
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\SchoolClass", mappedBy="school")
      */
     private $schoolClasses;

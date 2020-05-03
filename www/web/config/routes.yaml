@@ -24,11 +24,11 @@ addSchool:
     controller: App\Controller\SchoolController::addSchool
 
 getSchools:
-    path: /api/Schools
+    path: /api/schools
     controller: App\Controller\SchoolController::getSchools
 
 school:
-    path: /api/School/{id}
+    path: /api/school/{id}
     controller: App\Controller\SchoolController::schoolDetails
 
 
