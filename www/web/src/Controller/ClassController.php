@@ -54,9 +54,7 @@ class ClassController extends AbstractController
         //avoid circular refference error
         $encoder = new JsonEncoder();
         $defaultContext = [
-          //  AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
-
-            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
                 return $object->getName();
             },
         ];
@@ -77,6 +75,8 @@ class ClassController extends AbstractController
         $rsp = $serializer->serialize($classes, 'json',[
 
             AbstractNormalizer::IGNORED_ATTRIBUTES => ['password'],
+            AbstractNormalizer::GROUPS => ['classdata'],
+            AbstractNormalizer::ATTRIBUTES => ['id', 'name', 'level', 'classIndex']
 
         ]);
 
