@@ -21,6 +21,7 @@ class RegisterController extends AbstractController
     {
 
         $data = json_decode($request->getContent(),true);
+       // dd($data);
         $email = $data["username"];
         $user = $this->userRepository->findOneBy([
            'email' => $email,
@@ -34,7 +35,8 @@ class RegisterController extends AbstractController
         $password = $this->encoder->encodePassword($user,$data['password']);
         $user->setPassword($password);
         $user->setEmail($data['username']);
-        $user->setRole('ROLE_'.$data['role']);
+
+        $user->setRoles(['ROLE_'.$data['role']]);
         $user->setFullname($data['fullname']);
 
         $entityManager = $this->getDoctrine()->getManager();

@@ -73,7 +73,7 @@ class CourseController extends AbstractController
         return $response;
     }
 
-    public function getCourses(Request $request, Serializer $serializer)
+    public function getCourses( Serializer $serializer)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $course = $entityManager->getRepository(Courses::class)->findAll();

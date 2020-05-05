@@ -21,7 +21,7 @@ class Serializer
             AbstractNormalizer::IGNORED_ATTRIBUTES => ['password'],
             AbstractNormalizer::ATTRIBUTES => $attributes,
             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function($object, $format, $context) {
-                return $object->getName();
+                return $object->getId();
             },
         ]);
 

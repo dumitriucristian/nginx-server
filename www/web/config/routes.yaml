@@ -86,4 +86,7 @@ addGrade:
 
 
 #students
+students:
+    path: /api/students
+    controller: App\Controller\StudentController::getAllStudents
 
