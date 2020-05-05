@@ -19,32 +19,9 @@ class SchoolClassRepository extends ServiceEntityRepository
         parent::__construct($registry, SchoolClass::class);
     }
 
-    public function getAllClasses()
-    {
-        $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery('SELECT u FROM App\Entity\SchoolClass u');
-
-        // returns an array of Product objects
-        return $query->getResult();
-    }
 
 
-    public function getClassDetails($id)
-    {
-        $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery(
-            "SELECT 
-            u.id, 
-            u.school_id, 
-            u.name, 
-            u.level, 
-            u.class_index
-            FROM App\Entity\SchoolClass u
-            WHWERE u.id = $id");
 
-        // returns an array of Product objects
-        return $query->getResult();
-    }
 
     // /**
     //  * @return SchoolClass[] Returns an array of SchoolClass objects

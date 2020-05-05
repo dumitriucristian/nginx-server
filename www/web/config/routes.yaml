@@ -44,8 +44,8 @@ getClass:
     controller: App\Controller\ClassController::getClasses
 
 class:
-    path: /api/school/id
-    controller: App\Controllrer\ClassController::classDetails
+    path: /api/class/{id}
+    controller: App\Controller\ClassController::classDetails
 
 
 #course
@@ -64,6 +64,7 @@ assignTeacher:
 addGrade:
     path: /api/addGrade
     controller: App\Controller\GradeController::addGrade
+
 
 #students
 
