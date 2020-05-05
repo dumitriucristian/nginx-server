@@ -65,7 +65,7 @@ class ClassController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $classes = $entityManager->getRepository(SchoolClass::class)->find($request->get('id'));
         $rsp = $serializer->serialize($classes);
-
+  
         $response = new Response(
             $rsp,
             Response::HTTP_OK,

@@ -14,7 +14,7 @@ class Serializer
     public function serialize($classes, array $attributes = null)
     {
 
-        $attributes = (empty($attributes))? 'attributes' : $attributes;
+        $attributes = (empty($attributes)) ?? 'attributes' ;
         $serializer = new \Symfony\Component\Serializer\Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 
         $rsp = $serializer->serialize($classes, 'json',[

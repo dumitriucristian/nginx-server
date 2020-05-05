@@ -53,11 +53,30 @@ addCourse:
     path: /api/addCourse
     controller: App\Controller\CourseController::addCourse
 
+getCourse:
+    path: /api/course/{id}
+    controller: App\Controller\CourseController::courseDetails
+
+courses:
+    path: /api/courses
+    controller: App\Controller\CourseController::getCourses
+
+
+
 
 #teacher
 assignTeacher:
     path: /api/assignTeacher
     controller: App\Controller\CourseController::addTeacher
+
+getTeacher:
+    path: /api/teacher/{id}
+    controller: App\Controller\TeacherController::teacherDetails
+
+teachers:
+    path: /api/teachers
+    controller: App\Controller\TeacherController::getTeachers
+
 
 
 #grades
