@@ -36,15 +36,15 @@ class School
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\SchoolClass", mappedBy="school")
+     * @ORM\OneToMany(targetEntity="App\Entity\Classroom", mappedBy="school")
      */
-    private $schoolClasses;
+    private $Classroomes;
 
     public function __construct()
     {
         $this->classes = new ArrayCollection();
         $this->class_id = new ArrayCollection();
-        $this->schoolClasses = new ArrayCollection();
+        $this->Classroomes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,30 +89,30 @@ class School
     }
 
     /**
-     * @return Collection|SchoolClass[]
+     * @return Collection|Classroom[]
      */
-    public function getSchoolClasses(): Collection
+    public function getClassroomes(): Collection
     {
-        return $this->schoolClasses;
+        return $this->Classroomes;
     }
 
-    public function addSchoolClass(SchoolClass $schoolClass): self
+    public function addClassroom(Classroom $Classroom): self
     {
-        if (!$this->schoolClasses->contains($schoolClass)) {
-            $this->schoolClasses[] = $schoolClass;
-            $schoolClass->setSchool($this);
+        if (!$this->Classroomes->contains($Classroom)) {
+            $this->Classroomes[] = $Classroom;
+            $Classroom->setSchool($this);
         }
 
         return $this;
     }
 
-    public function removeSchoolClass(SchoolClass $schoolClass): self
+    public function removeClassroom(Classroom $Classroom): self
     {
-        if ($this->schoolClasses->contains($schoolClass)) {
-            $this->schoolClasses->removeElement($schoolClass);
+        if ($this->Classroomes->contains($Classroom)) {
+            $this->Classroomes->removeElement($Classroom);
             // set the owning side to null (unless already changed)
-            if ($schoolClass->getSchool() === $this) {
-                $schoolClass->setSchool(null);
+            if ($Classroom->getSchool() === $this) {
+                $Classroom->setSchool(null);
             }
         }
 

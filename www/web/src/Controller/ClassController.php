@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Entity\SchoolClass;
+use App\Entity\Classroom;
 use App\Entity\School;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class ClassController extends AbstractController
     public function addClass(Request $request)
     {
         $data = json_decode($request->getContent(),true);
-        $class = new SchoolClass();
+        $class = new Classroom();
 
         $class->setLevel( $data['level']);
         $class->setClassIndex( $data['index']);
@@ -45,7 +45,7 @@ class ClassController extends AbstractController
     {
         //get all classes in school
         $entityManager = $this->getDoctrine()->getManager();
-        $classes = $entityManager->getRepository(SchoolClass::class)->findAll();
+        $classes = $entityManager->getRepository(Classroom::class)->findAll();
         $rsp = $serializer->serialize($classes,['id', 'name', 'level', 'classIndex','school']);
 
         $response = new Response(
@@ -63,9 +63,9 @@ class ClassController extends AbstractController
     public function classDetails(Request $request, Serializer $serializer)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $classes = $entityManager->getRepository(SchoolClass::class)->find($request->get('id'));
+        $classes = $entityManager->getRepository(Classroom::class)->find($request->get('id'));
         $rsp = $serializer->serialize($classes);
-  
+
         $response = new Response(
             $rsp,
             Response::HTTP_OK,

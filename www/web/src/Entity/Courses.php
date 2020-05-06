@@ -27,9 +27,9 @@ class Courses
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SchoolClass", inversedBy="courses")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Classroom", inversedBy="courses")
      */
-    private $SchoolClass;
+    private $Classroom;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
@@ -66,14 +66,14 @@ class Courses
         return $this;
     }
 
-    public function getSchoolClass(): ?SchoolClass
+    public function getClassroom(): ?Classroom
     {
-        return $this->SchoolClass;
+        return $this->Classroom;
     }
 
-    public function setSchoolClass(?SchoolClass $SchoolClass): self
+    public function setClassroom(?Classroom $Classroom): self
     {
-        $this->SchoolClass = $SchoolClass;
+        $this->Classroom = $Classroom;
 
         return $this;
     }

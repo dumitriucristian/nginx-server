@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SchoolClassRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClassroomRepository")
  */
-class SchoolClass
+class Classroom
 {
     /**
      * @ORM\Id()
@@ -38,13 +38,13 @@ class SchoolClass
     private $class_index;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\School", inversedBy="schoolClasses")
+     * @ORM\ManyToOne(targetEntity="App\Entity\School", inversedBy="Classroom")
      * @ORM\JoinColumn(nullable=false)
      */
     private $school;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Courses", mappedBy="SchoolClass")
+     * @ORM\OneToMany(targetEntity="App\Entity\Courses", mappedBy="Classroom")
      */
     private $courses;
 
@@ -118,7 +118,7 @@ class SchoolClass
     {
         if (!$this->courses->contains($course)) {
             $this->courses[] = $course;
-            $course->setSchoolClass($this);
+            $course->setClassroom($this);
         }
 
         return $this;
@@ -129,8 +129,8 @@ class SchoolClass
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
             // set the owning side to null (unless already changed)
-            if ($course->getSchoolClass() === $this) {
-                $course->setSchoolClass(null);
+            if ($course->getClassroom() === $this) {
+                $course->setClassroom(null);
             }
         }
 

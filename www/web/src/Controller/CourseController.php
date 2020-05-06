@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Courses;
-use App\Entity\SchoolClass;
+use App\Entity\Classroom;
 use App\Services\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,8 +24,8 @@ class CourseController extends AbstractController
         $course->setDescription($data['description']);
         $entityManager = $this->getDoctrine()->getManager();
 
-        $class = $entityManager->getRepository(SchoolClass::class)->find($data['school_class_id']);
-        $course->setSchoolClass($class);
+        $class = $entityManager->getRepository(Classroom::class)->find($data['school_class_id']);
+        $course->setClassroom($class);
 
         $entityManager->persist($course);
         $entityManager->flush();
