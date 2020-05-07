@@ -44,3 +44,14 @@ doctrine:migrations:status
 //downgrade or upgrade
 doctrine:migrations:migrate <version number>    
 ```
+
+###BDD 
+Note: BDD run only under php-fpm in this project  - got to your php-fpm server
+
+Run behat tests: ```vendor/bin/behat```     
+Check behat version: ```vendor/bin/behat -V```
+
+###PhpUnit
+Note: phpunit doesn't run under php-fmp server run only local
+
+Run phpunit test: ```php bin/phpunit```
