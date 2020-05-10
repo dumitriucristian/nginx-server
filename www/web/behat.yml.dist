@@ -3,6 +3,8 @@ default:
         default:
             contexts:
                 - App\Tests\Behat\DemoContext
+                - App\Tests\Behat\TestContext
 
     extensions:
-        FriendsOfBehat\SymfonyExtension: null
+        FriendsOfBehat\SymfonyExtension: ~
+
