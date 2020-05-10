@@ -8,7 +8,8 @@ use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
-
+use Behat\Behat\Tester\Exception\PendingException;
+use Behat\Mink\Session;
 /**
  * This context class contains the definitions of the steps used by the demo
  * feature file. Learn how to get started with Behat and BDD on Behat's website.
@@ -23,9 +24,10 @@ final class DemoContext implements Context
     /** @var Response|null */
     private $response;
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel, Session $session)
     {
         $this->kernel = $kernel;
+        $this->session = $session;
     }
 
     /**
@@ -45,6 +47,5 @@ final class DemoContext implements Context
             throw new \RuntimeException('No response received');
         }
     }
-
 
 }

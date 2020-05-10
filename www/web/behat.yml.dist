@@ -3,8 +3,9 @@ default:
         default:
             contexts:
                 - App\Tests\Behat\DemoContext
-                - App\Tests\Behat\TestContext
+        api:
+            contexts:
+                - Api\TestContext
 
     extensions:
         FriendsOfBehat\SymfonyExtension: ~
-

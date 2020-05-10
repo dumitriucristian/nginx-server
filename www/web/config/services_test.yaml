@@ -5,3 +5,11 @@ services:
 
     App\Tests\Behat\:
         resource: '../tests/Behat/*'
+
+    Api\:
+        resource: '../features/bootstrap/Api/*'
+
+
+
+
+
