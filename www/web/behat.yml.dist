@@ -6,6 +6,13 @@ default:
         api:
             contexts:
                 - Api\TestContext
+            extensions:
+
 
     extensions:
         FriendsOfBehat\SymfonyExtension: ~
+        Behat\MinkExtension:
+            sessions:
+                symfony:
+                    symfony: ~
+
