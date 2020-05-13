@@ -44,14 +44,29 @@ doctrine:migrations:status
 //downgrade or upgrade
 doctrine:migrations:migrate <version number>    
 ```
+###TDD
+Run tests ``` php bin/unit```
 
 ###BDD 
 Note: BDD run only under php-fpm in this project  - got to your php-fpm server
 
-Run behat tests: ```vendor/bin/behat```     
-Check behat version: ```vendor/bin/behat -V```
+Run behat tests: ```vendor/bin/behat```        
+Check behat version: ```vendor/bin/behat -V```  
+Run specific suite:  ```vendor/bin/behat --suite=<suite-name>```
 
 ###PhpUnit
 Note: phpunit doesn't run under php-fmp server run only local
 
 Run phpunit test: ```php bin/phpunit```
+
+###Composer
+Uninstall package ```composer remove <package name>```
+
+###Friends of Behat
+Rememeber:      
+ To create a new suite is required to : 
+- add the features folder in composer, because the folder is out of src folder, as eg.:   
+ "Api\\": "features/bootstrap/Api/"     
+- add the new namespace in services_test.yaml:  
+   eg. : Api\: resource: '../features/bootstrap/Api/*'
+
