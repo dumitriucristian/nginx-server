@@ -69,4 +69,12 @@ Rememeber:
  "Api\\": "features/bootstrap/Api/"     
 - add the new namespace in services_test.yaml:  
    eg. : Api\: resource: '../features/bootstrap/Api/*'
+### Symfony CLI
+symfony cli ```php bin/console```   
 
+### Symfony fixtures
+https://robertbasic.com/blog/loading-fixtures-for-a-symfony-app-in-behat-tests/
+
+###Symfony migrations
+Generate migration after entity schema update  ```doctrine:migrations:diff```  
+Migrate up ```doctrine:migrations:execute --up <version number without Version prefix>```
