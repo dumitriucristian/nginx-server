@@ -41,12 +41,12 @@ class User implements UserInterface
     private $fullname;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student")
+     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student", orphanRemoval=true,  cascade={"persist", "remove"})
      */
     private $teacher;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Grade", mappedBy="student", orphanRemoval=true,  cascade={"persist", "remove"})
      */
     private $grades;
 

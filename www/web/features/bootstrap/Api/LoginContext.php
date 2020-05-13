@@ -1,12 +1,18 @@
 <?php
 namespace Api;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit\Framework\TestCase;
+use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 /**
  * Defines application features from the specific context.
@@ -23,15 +29,43 @@ class LoginContext extends TestCase implements Context
 
     private $kernel;
     private $response;
+    private $encoder;
+    private $entityManager;
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager)
     {
         $this->kernel = $kernel;
+        $this->encoder = $encoder;
+        $this->entityManager = $entityManager;
     }
 
 
     /**
-     *  @Given I request :api type :type with :username and :password
+     * @Given there is a user :username with password :password
+     */
+    public function thereIsAUserWithPassword($username, $password)
+    {
+        $user = new User();
+        $password = $this->encoder->encodePassword($user,$password);
+        $user->setPassword($password);
+        $user->setEmail($username);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+    }
+
+    /**
+     * @BeforeScenario
+     */
+
+   public function before(BeforeScenarioScope $scope)
+    {
+        $query = $this->entityManager->createQuery('DELETE FROM App\Entity\User ');
+        $query->execute();
+    }
+
+    /**
+     *  @When I request :api type :type with :username and :password
      */
     public function  iRequestTypeWithAnd($api, $type, $username, $password) : void
     {
@@ -77,8 +111,6 @@ class LoginContext extends TestCase implements Context
     {
         $this->assertObjectHasAttribute($token, json_decode($this->response->getContent()));
     }
-
-
 
 
 
