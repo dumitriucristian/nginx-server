@@ -3,12 +3,15 @@
 # http://behat.org/en/latest/quick_start.html
 
 Feature:
-    In order to prove that the Behat Symfony extension is correctly installed
-    As a user
-    I want to have a demo scenario
+    In order to prove that the login api is working properly
 
-    Scenario: It receives a response from Symfony's kernel
-        When a demo scenario sends a request to "/"
-        Then the response should be received
+    Scenario: Login with invalid username and password and you should receive a 401 status code and a json message
+        Given I request "/api/login_check" type "POST" with "test@test.com" and "zzzz"
+        Then the response status code should be 401
+        Then the response should contain "Invalid credentials."
 
 
+    Scenario: Login with valid credentials and you should receive a token
+        Given I request "/api/login_check" type "POST" with "test@test.com" and "test"
+        Then the response status code should be 200
+        Then the response has token "token"

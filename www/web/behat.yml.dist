@@ -5,7 +5,7 @@ default:
                 - App\Tests\Behat\DemoContext
         api:
             contexts:
-                - Api\TestContext
+                - Api\ApiContext
             extensions:
 
 
