@@ -6,13 +6,12 @@ use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Behat\Tester\Exception\PendingException;
-use Symfony\Component\HttpClient\HttpClient;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Defines application features from the specific context.
  */
-class ApiContext extends TestCase implements Context
+class LoginContext extends TestCase implements Context
 {
     /**
      * Initializes context.
@@ -78,6 +77,7 @@ class ApiContext extends TestCase implements Context
     {
         $this->assertObjectHasAttribute($token, json_decode($this->response->getContent()));
     }
+
 
 
 

@@ -1,12 +1,12 @@
 default:
     suites:
-        default:
+        login:
             contexts:
-                - App\Tests\Behat\DemoContext
-        api:
+                - Api\LoginContext
+        register:
             contexts:
-                - Api\ApiContext
-            extensions:
+                - Api\RegisterContext
+
 
 
     extensions:
