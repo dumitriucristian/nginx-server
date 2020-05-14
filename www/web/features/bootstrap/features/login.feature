@@ -8,6 +8,6 @@ Feature:
 
     Scenario: Login with valid credentials and you should receive a token
         Given there is a user "newuser@test.com" with password "test"
-        When I request "/api/login_check" type "POST" with "newuser@test.comss" and "test"
+        When I request "/api/login_check" type "POST" with "newuser@test.com" and "test"
         Then the response status code should be 200
         Then the response has token "token"

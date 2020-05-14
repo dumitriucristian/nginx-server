@@ -3,11 +3,12 @@ default:
         login:
             contexts:
                 - Api\LoginContext
+
         register:
+            paths:
+                - "%paths.base%/features/register"
             contexts:
                 - Api\RegisterContext
-
-
 
     extensions:
         FriendsOfBehat\SymfonyExtension: ~

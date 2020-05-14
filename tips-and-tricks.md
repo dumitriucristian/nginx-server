@@ -30,7 +30,7 @@ React links
 http://www.hackingwithreact.com/read/1/23/creating-a-link-between-pages-in-react-router
 
 ###GIT
- Update submodule :```git submodule update --recursive```   
+ Update submodule :```git submodundle update --recursive```   
  Delete local branch :```git branch -d <branch name>```
  
 ###CLI
@@ -53,6 +53,7 @@ Note: BDD run only under php-fpm in this project  - got to your php-fpm server
 Run behat tests: ```vendor/bin/behat```        
 Check behat version: ```vendor/bin/behat -V```  
 Run specific suite:  ```vendor/bin/behat --suite=<suite-name>```
+Debug specific scenario : ```And print last response```
 
 ###PhpUnit
 Note: phpunit doesn't run under php-fmp server run only local
@@ -63,12 +64,14 @@ Run phpunit test: ```php bin/phpunit```
 Uninstall package ```composer remove <package name>```
 
 ###Friends of Behat
-Rememeber:      
+Notice:      
  To create a new suite is required to : 
-- add the features folder in composer, because the folder is out of src folder, as eg.:   
- "Api\\": "features/bootstrap/Api/"     
-- add the new namespace in services_test.yaml:  
-   eg. : Api\: resource: '../features/bootstrap/Api/*'
+- add the features folder in composer, because the folder is out of src folder, as eg: 
+ "Api\\": "features/bootstrap/Api/"             
+ 
+- add the new namespace in services_test.yaml  eg. : Api\: resource: '../features/bootstrap/Api/*'
+   
+   
 ### Symfony CLI
 symfony cli ```php bin/console```   
 

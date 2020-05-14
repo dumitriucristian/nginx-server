@@ -14,19 +14,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
-/**
- * Defines application features from the specific context.
- */
+
 class LoginContext extends TestCase implements Context
 {
-    /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
-     */
-
     private $kernel;
     private $response;
     private $encoder;
@@ -39,6 +29,15 @@ class LoginContext extends TestCase implements Context
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @BeforeScenario
+     */
+
+    public function before(BeforeScenarioScope $scope)
+    {
+        $query = $this->entityManager->createQuery('DELETE FROM App\Entity\User ');
+        $query->execute();
+    }
 
     /**
      * @Given there is a user :username with password :password
@@ -52,17 +51,10 @@ class LoginContext extends TestCase implements Context
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
+
     }
 
-    /**
-     * @BeforeScenario
-     */
 
-   public function before(BeforeScenarioScope $scope)
-    {
-        $query = $this->entityManager->createQuery('DELETE FROM App\Entity\User ');
-        $query->execute();
-    }
 
     /**
      *  @When I request :api type :type with :username and :password
@@ -83,7 +75,6 @@ class LoginContext extends TestCase implements Context
         );
 
         $this->response = $this->kernel->handle($request);
-
         $this->assertInstanceOf(Response::class, $this->response);
     }
 
