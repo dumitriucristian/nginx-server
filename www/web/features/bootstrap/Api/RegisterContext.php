@@ -3,15 +3,16 @@
 namespace Api;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Gherkin\Node\PyStringNode;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Behat\Behat\Context\Context;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit\Framework\TestCase;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Behat\Behat\Hook\Scope\AfterStepScope;
+use Behat\Mink\Exception\Exception;
 
 
 class RegisterContext extends TestCase implements Context
@@ -19,6 +20,7 @@ class RegisterContext extends TestCase implements Context
     private $kernel;
     private $entityManager;
     private $response;
+    private $jsonData;
 
     public function __construct(KernelInterface $kernel,  EntityManagerInterface $entityManager)
     {
@@ -36,34 +38,36 @@ class RegisterContext extends TestCase implements Context
         $query->execute();
     }
 
+
     /**
      * @When I request :api type :type with email :email and password :password as role :role
      */
     public function iRequestTypeWithEmailAndPasswordAsRole($api, $type, $email, $password, $role)
     {
-
-        $request = Request::create(
-            $api,
-            $type,
-            [],
-            [],
-            [],
-            [
-                'SERVER_PORT' => 8080,
-                'CONTENT_TYPE' => 'application/json'
-            ],
-            json_encode(
+            $request = Request::create(
+                $api,
+                $type,
+                [],
+                [],
+                [],
                 [
-                    "username" => $email,
-                    "password" => $password,
-                    "role" => $role
-                ]
-            )
-        );
+                    'SERVER_PORT' => 8080,
+                    'CONTENT_TYPE' => 'application/json'
+                ],
+                json_encode(
+                    [
+                        "username" => $email,
+                        "password" => $password,
+                        "role" => $role
+                    ]
+                )
+            );
 
-        $rsp = $this->kernel->handle($request);
-        $this->response = $rsp->getContent();
-        $this->assertInstanceOf(JsonResponse::class, $rsp);
+            $rsp = $this->kernel->handle($request);
+            $this->response = $rsp->getContent();
+
+            $this->assertInstanceOf(JsonResponse::class, $rsp);
+
     }
 
     /**
@@ -76,5 +80,48 @@ class RegisterContext extends TestCase implements Context
             $stringToCheck,
             $this->response
         );
+
+    }
+
+
+    /**
+     * @Given the request body is:
+     */
+    public function theRequestBodyIs(PyStringNode $string)
+    {
+        $this->jsonData = $string->getRaw();
+    }
+
+    /**
+     * @When I request :api using HTTP :type
+     */
+    public function iRequestUsingHttp($api, $type)
+    {
+        $request = Request::create(
+            $api,
+            $type,
+            [],
+            [],
+            [],
+            [
+                'SERVER_PORT' => 8080,
+                'CONTENT_TYPE' => 'application/json'
+            ],
+            $this->jsonData
+        );
+
+        $rsp = $this->kernel->handle($request);
+        $this->response = $rsp->getContent();
+
+        $this->assertInstanceOf(JsonResponse::class, $rsp);
+
+    }
+
+    /**
+     * @Then the response body contains JSON:
+     */
+    public function theResponseBodyContainsJson(PyStringNode $string)
+    {
+       $this->assertJsonStringEqualsJsonString( $string->getRaw(),$this->response );
     }
 }

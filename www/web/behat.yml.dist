@@ -11,8 +11,14 @@ default:
                 - Api\RegisterContext
 
     extensions:
+        Imbo\BehatApiExtension:
+            apiClient:
+                base_uri: http://localhost:8080
+                timeout: 5.0
+                verify: false
         FriendsOfBehat\SymfonyExtension: ~
         Behat\MinkExtension:
+            show_auto: true
             sessions:
                 symfony:
                     symfony: ~
