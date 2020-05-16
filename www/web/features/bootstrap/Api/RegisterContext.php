@@ -11,8 +11,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit\Framework\TestCase;
 use Doctrine\ORM\EntityManagerInterface;
-use Behat\Behat\Hook\Scope\AfterStepScope;
-use Behat\Mink\Exception\Exception;
 
 
 class RegisterContext extends TestCase implements Context
@@ -22,7 +20,7 @@ class RegisterContext extends TestCase implements Context
     private $response;
     private $jsonData;
 
-    public function __construct(KernelInterface $kernel,  EntityManagerInterface $entityManager)
+    public function __construct(KernelInterface $kernel,  EntityManagerInterface $entityManager )
     {
         $this->entityManager = $entityManager;
         $this->kernel = $kernel;
@@ -80,7 +78,6 @@ class RegisterContext extends TestCase implements Context
             $stringToCheck,
             $this->response
         );
-
     }
 
 
@@ -112,9 +109,7 @@ class RegisterContext extends TestCase implements Context
 
         $rsp = $this->kernel->handle($request);
         $this->response = $rsp->getContent();
-
         $this->assertInstanceOf(JsonResponse::class, $rsp);
-
     }
 
     /**

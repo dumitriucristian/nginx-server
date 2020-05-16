@@ -28,7 +28,7 @@ Feature: In order to prove that register feature is working
         "data": {
             "user": {
                 "email": "test@test.com",
-                "roles": [g
+                "roles": [
                     "ROLE_SUPER_ADMIN",
                     "ROLE_USER"
                 ]

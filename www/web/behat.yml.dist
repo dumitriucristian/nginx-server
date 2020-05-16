@@ -16,7 +16,12 @@ default:
                 base_uri: http://localhost:8080
                 timeout: 5.0
                 verify: false
-        FriendsOfBehat\SymfonyExtension: ~
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                 class: ~
+                 path: ~
+                 environment: test
+                 debug: true
         Behat\MinkExtension:
             show_auto: true
             sessions:
