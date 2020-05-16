@@ -10,14 +10,13 @@ Feature: In order to prove that register feature is working
     When I request "/register" type "POST" with email "<username>" and password "<password>" as role "<role>"
     Then the response should have username "<username>" with role "<role>"
 
-  Scenario: Test imbo
+  Scenario: Test imbo with missing fullname param test should fail  and get exception
     Given the request body is:
     """
     {
       "username":"test@test.com",
       "password":"test",
-      "role":"SUPER_ADMIN",
-      "fullnam":"ana blandiana"
+      "role":"SUPER_ADMIN"
     }
     """
     When I request "/register" using HTTP "POST"

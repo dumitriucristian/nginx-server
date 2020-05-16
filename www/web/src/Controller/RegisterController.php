@@ -34,7 +34,7 @@ class RegisterController extends AbstractController
         $user->setPassword($password);
         $user->setEmail($data['username']);
         $user->setRoles(['ROLE_'.$data['role']]);
-        $user->setFullname($data['fullname']);
+        $user->setFullname($data['fullname']); //this is the missing param
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
