@@ -34,16 +34,16 @@ http://www.hackingwithreact.com/read/1/23/creating-a-link-between-pages-in-react
  Delete local branch :```git branch -d <branch name>```
  
 ###CLI
-```
-//execute specific migration file   
-doctrine:migrations:execute <version number>  
-  
-//check migration status    
-doctrine:migrations:status  
 
-//downgrade or upgrade
-doctrine:migrations:migrate <version number>    
-```
+execute specific migration file   
+```doctrine:migrations:execute <version number>  ```
+  
+check migration status    
+```doctrine:migrations:status  ```
+
+downgrade or upgrade
+```doctrine:migrations:migrate <version number>   ``` 
+
 ###TDD
 Run tests ``` php bin/unit```
 
@@ -74,6 +74,8 @@ Notice:
    
 ### Symfony CLI
 symfony cli ```php bin/console```   
+debug autowiring  ```php bin/console debug:autowiring```
+debug services  ```php bin/console debug:container```
 
 ### Symfony fixtures
 https://robertbasic.com/blog/loading-fixtures-for-a-symfony-app-in-behat-tests/
