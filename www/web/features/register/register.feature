@@ -10,7 +10,7 @@ Feature: In order to prove that register feature is working
     When I request "/register" type "POST" with email "<username>" and password "<password>" as role "<role>"
     Then the response should have username "<username>" with role "<role>"
 
-  Scenario: Test imbo with missing fullname param test should fail  and get exception
+  Scenario: Test imbo api for register
     Given the request body is:
     """
     {
@@ -35,6 +35,12 @@ Feature: In order to prove that register feature is working
         }
     }
     """
+
+  Scenario: Get all users
+    Given I am authenticating as "test@test.com" with "test"
+    When I request "/api/users" using HTTP "GET"
+    Then the response body contains an array of users
+
 
 
 
