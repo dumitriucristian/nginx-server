@@ -17,6 +17,10 @@ register:
 api_login_check:
     path: /api/login_check
 
+#users
+users:
+    path: /api/users
+    controller: App\Controller\UserController::getUsers
 
 #schools
 addSchool:
@@ -30,6 +34,7 @@ getSchools:
 school:
     path: /api/school/{id}
     controller: App\Controller\SchoolController::schoolDetails
+
 
 
 

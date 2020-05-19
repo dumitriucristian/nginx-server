@@ -4,6 +4,7 @@ namespace Api;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
+use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Behat\Behat\Context\Context;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit\Framework\TestCase;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 
 class RegisterContext extends TestCase implements Context
 {
@@ -19,23 +20,32 @@ class RegisterContext extends TestCase implements Context
     private $entityManager;
     private $response;
     private $jsonData;
+    private static $staticKernel;
+    private static $em;
+    private $token;
+    private $refreshToken;
+
 
     public function __construct(KernelInterface $kernel,  EntityManagerInterface $entityManager )
     {
-        $this->entityManager = $entityManager;
         $this->kernel = $kernel;
+        $this->entityManager = $entityManager;
+        self::$staticKernel = $kernel;
+        self::$em = $entityManager;
+
+
     }
 
     /**
-     * @BeforeScenario
+     *@BeforeSuite
      */
-
-    public function before(BeforeScenarioScope $scope)
+    public static function beforeSuite(BeforeSuiteScope $scope)
     {
-        $query = $this->entityManager->createQuery('DELETE FROM App\Entity\User ');
-        $query->execute();
-    }
 
+        $query = self::$em->createQuery('DELETE FROM App\Entity\User ');
+        $query->execute();
+
+    }
 
     /**
      * @When I request :api type :type with email :email and password :password as role :role
@@ -119,4 +129,63 @@ class RegisterContext extends TestCase implements Context
     {
        $this->assertJsonStringEqualsJsonString( $string->getRaw(),$this->response );
     }
+
+    /**
+     * @Given I am authenticating as :username with :password
+     */
+    public function iAmAuthenticatingAsWith($username, $password)
+    {
+        $request = Request::create(
+            "/api/login_check",
+            "GET",
+            [],
+            [],
+            [],
+            [
+                'SERVER_PORT' => 8080,
+                'CONTENT_TYPE' => 'application/json'
+            ],
+            json_encode(
+                [
+                    "username" =>$username,
+                    "password" => $password
+                ]
+            )
+        );
+
+        $rsp = $this->kernel->handle($request);
+        $this->token = json_decode($rsp->getContent())->token;
+        $this->refreshToken = json_decode($rsp->getContent())->refresh_token;
+
+    }
+
+
+    /**
+     * @Then the response body contains an array of users
+     */
+    public function theResponseBodyContainsAnArrayOfUsers()
+    {
+
+        $request = Request::create(
+            "/api/users",
+            "GET",
+            [],
+            [],
+            [],
+            [
+                'SERVER_PORT' => 8080,
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_AUTHORIZATION' => 'Bearer ' . $this->token
+            ],
+            []
+        );
+
+        $rsp = $this->kernel->handle($request);
+        return  $this->assertIsArray(json_decode($rsp->getContent()));
+
+    }
+
+
+
+
 }
