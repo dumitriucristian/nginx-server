@@ -4,6 +4,7 @@ namespace Api;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
+use phpDocumentor\Reflection\DocBlock\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Behat\Behat\Context\Context;
@@ -180,9 +181,8 @@ class RegisterContext extends TestCase implements Context
         );
 
         $rsp = $this->kernel->handle($request);
-       // dd($request);
-        dd($rsp);
-        throw new PendingException();
+        return  $this->assertIsArray(json_decode($rsp->getContent()));
+
     }
 
 
